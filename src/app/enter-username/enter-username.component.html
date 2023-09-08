@@ -1,0 +1,51 @@
+<label>User Name</label>
+
+<input type="text" class="form-control" [(ngModel)]="this.UserName" />
+
+<button
+  class="btn btn-primary"
+  [disabled]="UserNameIsEmpty() || UserNameExists()"
+  (click)="ResetUserName()"
+>
+  Add User
+</button>
+
+<p>{{ this.UserName }}</p>
+
+<h3 id="EmptyUserName" *ngIf="UserNameIsEmpty()">UserName can not be empty</h3>
+<h3 id="AlreadyExistingUserName" *ngIf="UserNameExists()">
+  UserName already exists
+</h3>
+
+<script>
+  src = "enter-username.js";
+</script>
+
+<script>
+  // JavaScript code to conditionally show/hide the paragraphs
+  document.addEventListener("DOMContentLoaded", function () {
+    // Boolean variables to determine whether to show or hide the paragraphs
+    const showParagraphEmpty = UserNameIsEmpty(); // Change this to true to show the paragraph1
+    const showParagraphExisting = UserNameExists(); // Change this to true to show the paragraph2
+
+    // Get references to the paragraph elements 1 and 2
+    const myParagraphEmpty = document.getElementById("EmptyUserName");
+    const myParagraphExisting = document.getElementById(
+      "AlreadyExistingUserName"
+    );
+
+    if (showParagraphEmpty) {
+      myParagraphEmpty.style.display = "block"; // Show the paragraph 1
+    } else {
+      myParagraphEmpty.style.display = "none"; // Hide the paragraph 1
+    }
+
+    if (showParagraphExisting) {
+      myParagraphExisting.style.display = "block"; // Show the paragraph 2
+    } else {
+      myParagraphExisting.style.display = "none"; // Hide the paragraph 2
+    }
+  });
+</script>
+
+<p [innerText]="this.DisplayUsers"></p>
